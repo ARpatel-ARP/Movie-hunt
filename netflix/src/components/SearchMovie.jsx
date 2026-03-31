@@ -13,14 +13,13 @@ const SearchMovie = () => {
   const dispatch = useDispatch()
   const isLoading =useSelector(store=>store.app.isLoading)
   const {movieName, searchedMovie} =useSelector(store=>store.SearchMovie)
-  console.log(movieName);
   
  const submitHandler = async (e) => {
   e.preventDefault()
   dispatch(setLoading(true))
   try {
     const res = await axios.get(`${Search_Movie}${SearchMovie}&include_adult=true&language=en-US&page=1`, options)
-    console.log(res.data);
+  
     const movies = res?.data?.results
     dispatch(setSearchedMovieDetails({
   query: SearchMovie,

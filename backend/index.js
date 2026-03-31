@@ -8,12 +8,15 @@ import databaseConnection from "./utils/database.js"
 import cookieParser from "cookie-parser"
 import UserRoute from "./routes/UserRoute.js"
 import cors from "cors"
+import path from 'node:path';
 
 dotenv.config({
     path: "./.env"
 })
 databaseConnection()
 const app = express()
+
+const _dirname = path.resolve()
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
@@ -30,6 +33,12 @@ app.use(cors(corsOptions))
 //api
 app.use("/api/v1/user", UserRoute)
 //http://localhost:8000/api/v1/user/register
+
+app.use(express.static(path.join(_dirname, "/netflix/dist")))
+app.get('*splat', (_, res) => {
+    res.sendFile(path.resolve(_dirname, "netflix", "dist", "index.html"))
+})
+  
 
 
 app.listen(process.env.PORT, ()=>{
