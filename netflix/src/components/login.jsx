@@ -111,7 +111,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             className="px-3 bg-slate-900 h-10"
             type="password"
-            placeholder="Create Password"
+            placeholder="Enter Password"
           />
           {!isLogin && (
             <input
@@ -121,7 +121,7 @@ const Login = () => {
             />
           )}
           <p>
-            {isLogin ? "New to Netflix?" : "Already have an Account? "}{" "}
+            {isLogin ? "New to Rautflix?" : "Already have an Account? "}{" "}
             <span
               onClick={loginHandler}
               className="ml-1 cursor-pointer text-red-500"
