@@ -55,7 +55,7 @@ export const Register = asyncHandler(async (req, res) => {
         if (user) {
             return res.status(401).json({ message: "Email has been already used", success: false })
         }
-        const hashedPassword = await bcryptjs.hash(password, 16)
+        const hashedPassword = await bcryptjs.hash(password, 6)
         await User.create({ fullName, email, password: hashedPassword });
         return res.status(200).json({ message:"Account Created Successfully", success:true })
     } catch (error) {

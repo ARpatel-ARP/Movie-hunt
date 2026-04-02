@@ -24,8 +24,8 @@ const MainContainer = () => {
       <div className="absolute inset-0 w-full h-full overflow-hidden bg-gray-900">
         {/* Mobile: always show backdrop image */}
         {backdropPath && (
-          <img
-            className="block md:hidden w-full h-full object-cover"
+          <img 
+          className="w-full h-full object-cover"
             src={`https://image.tmdb.org/t/p/w780${backdropPath}`}
             alt={selectedMovie?.title || ''}
           />
@@ -33,7 +33,7 @@ const MainContainer = () => {
 
         {/* Desktop: show YouTube trailer */}
         {trailer && (
-          <div className="hidden md:block absolute inset-0 pointer-events-none overflow-hidden">
+         <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <iframe
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
               style={{ width: '177.78vh', height: '100%', minWidth: '100%' }}

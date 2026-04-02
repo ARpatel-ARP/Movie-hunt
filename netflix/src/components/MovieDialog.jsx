@@ -4,6 +4,9 @@ import VideoBackground from './VideoBackground';
 
 export default function MovieDialog() {
   const { id } = useSelector(store => store.movie);
-  // This component just loads the trailer in the background - no height, no layout impact
-  return <VideoBackground movieId={id} />;
+  return (
+    <div className="relative w-full h-screen">
+      <VideoBackground movieId={id} />
+    </div>
+  );
 }
