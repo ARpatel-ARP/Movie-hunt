@@ -18,13 +18,16 @@ const MainContainer = () => {
   const { id } = movie[0];
 
   return (
-    <div className='relative w-full h-[45vh] sm:h-[55vh] md:h-[65vh] lg:h-[80vh] overflow-hidden'>
+    <div className='relative w-full overflow-hidden' style={{ height: 'min(56.25vw, 85vh)' }}>
+      {/* Video fills container perfectly */}
       <VideoBackground movieId={id} />
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent z-10" />
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
-      {/* Title positioned over video */}
-      <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-0 z-20 w-full">
+
+      {/* Dark gradient so text is always readable */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10" />
+
+      {/* Title sits at bottom-left, always visible */}
+      <div className="absolute bottom-6 sm:bottom-10 md:bottom-14 left-0 z-20 w-full">
         <VideoTitle title={selectedMovie?.title} overview={selectedMovie?.overview} />
       </div>
     </div>
