@@ -4,20 +4,21 @@ import MovieCard from "./MovieCard";
 const MovieList = ({ title, movies }) => {
   if (!movies) return null;
   return (
-    <div className="text-white w-full mb-6">
+    <div className="text-white w-full mb-4">
       {title && (
-        <h1 className="text-base sm:text-xl md:text-2xl lg:text-3xl mx-3 mb-2 sm:mb-3 font-semibold">
+        <h1 className="text-base sm:text-xl md:text-2xl mx-3 mb-2 font-semibold">
           {title}
         </h1>
       )}
-      {/* overflow-x-scroll with -webkit-overflow-scrolling for real iOS/Android scroll */}
       <div
-        className="flex gap-x-2 sm:gap-x-3 px-3 pb-3"
+        className="flex gap-2 px-3 pb-2"
         style={{
-          overflowX: 'scroll',
+          overflowX: 'auto',
+          overflowY: 'visible',
           WebkitOverflowScrolling: 'touch',
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
+          touchAction: 'pan-x',
         }}
       >
         {movies.map((movie) => (

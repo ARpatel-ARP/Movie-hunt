@@ -21,13 +21,17 @@ const MovieCard = ({ posterPath, movieId, movie }) => {
   if (!posterPath) return null;
 
   return (
-    <div className="w-24 sm:w-32 md:w-40 lg:w-48 shrink-0">
+    <div
+      className="shrink-0 rounded overflow-hidden"
+      style={{ width: 'clamp(80px, 22vw, 160px)' }}
+    >
       <img
         onClick={handleOpen}
-        className="w-full rounded-sm hover:scale-105 transition-transform duration-200 cursor-pointer"
-        style={{ aspectRatio: '2/3', objectFit: 'cover' }}
+        className="w-full h-full object-cover cursor-pointer active:opacity-80"
+        style={{ aspectRatio: '2/3', display: 'block' }}
         src={`${Banner_url}${posterPath}`}
         alt={movie.title}
+        draggable={false}
       />
     </div>
   );

@@ -1,21 +1,9 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import { useDispatch, useSelector } from 'react-redux';
-import { setOpen } from '../redux/MovieSlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import VideoBackground from './VideoBackground';
-import VideoTitle from './VideoTitle';
 
 export default function MovieDialog() {
   const { id } = useSelector(store => store.movie);
-
-  return (
-   <div className="relative w-full h-screen">
-
-  {/* Background */}
-  <VideoBackground movieId={id} />
-</div>
-  );
+  // This component just loads the trailer in the background - no height, no layout impact
+  return <VideoBackground movieId={id} />;
 }

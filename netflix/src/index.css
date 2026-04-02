@@ -1,18 +1,16 @@
 @import "tailwindcss";
 
-/* Hide scrollbars everywhere but keep scroll working */
-body::-webkit-scrollbar,
-*::-webkit-scrollbar {
-  display: none;
-}
-
 * {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   background-color: black;
-  /* Prevent horizontal overflow on mobile */
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
+
+/* Hide all scrollbars visually but keep them functional */
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; ms-overflow-style: none; }
