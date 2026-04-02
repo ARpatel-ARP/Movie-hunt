@@ -2,37 +2,36 @@ import React, { useEffect } from 'react';
 import VideoTitle from './VideoTitle';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedMovie } from '../redux/MovieSlice';
-import { Banner_url } from '../utils/constants';
 
 const MainContainer = () => {
   const dispatch = useDispatch();
-  const movie = useSelector(store => store.movie?.nowPlayingMovies);
+  const movies = useSelector(store => store.movie?.nowPlayingMovies);
   const selectedMovie = useSelector(store => store.movie?.selectedMovie);
   const trailer = useSelector(store => store.movie?.trailer);
 
   useEffect(() => {
-    if (movie) dispatch(setSelectedMovie(movie[0]));
-  }, [movie]);
+    if (movies) dispatch(setSelectedMovie(movies[0]));
+  }, [movies]);
 
-  if (!movie) return null;
+  if (!movies) return null;
 
-  const backdropPath = selectedMovie?.backdrop_path || movie[0]?.backdrop_path;
+  // Always use movies[0] for backdrop since selectedMovie may not have it
+  const backdropPath = movies[0]?.backdrop_path;
 
   return (
     <div className='relative w-full mt-14 sm:mt-16' style={{ aspectRatio: '16/9', maxHeight: '80vh' }}>
 
-      {/* On mobile: show poster image. On md+: show YouTube iframe */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        {/* Mobile poster (shown on small screens, hidden on md+) */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden bg-gray-900">
+        {/* Mobile: always show backdrop image */}
         {backdropPath && (
           <img
             className="block md:hidden w-full h-full object-cover"
             src={`https://image.tmdb.org/t/p/w780${backdropPath}`}
-            alt={selectedMovie?.title}
+            alt={selectedMovie?.title || ''}
           />
         )}
 
-        {/* Desktop iframe (hidden on small screens, shown on md+) */}
+        {/* Desktop: show YouTube trailer */}
         {trailer && (
           <div className="hidden md:block absolute inset-0 pointer-events-none overflow-hidden">
             <iframe
@@ -43,11 +42,16 @@ const MainContainer = () => {
             />
           </div>
         )}
+
+        {/* Fallback: if no backdrop, show dark gradient */}
+        {!backdropPath && (
+          <div className="w-full h-full bg-gradient-to-br from-gray-900 to-black" />
+        )}
       </div>
 
-      {/* Gradients for readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent z-10" />
+      {/* Gradients */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10" />
 
       {/* Title */}
       <div className="absolute bottom-6 sm:bottom-10 left-0 z-20 w-full">
