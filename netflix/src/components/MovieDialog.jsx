@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import VideoBackground from './VideoBackground';
+import useMovieById from '../hooks/useMovieById';
 
 export default function MovieDialog() {
   const { id } = useSelector(store => store.movie);
-  useMovieById(id); // just fetch trailer when id changes
+  useMovieById(id);
   return null;
 }
