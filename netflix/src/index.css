@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
-body::-webkit-scrollbar {
-  display: none;
-}
-
-::-webkit-scrollbar {
+/* Hide scrollbars everywhere but keep scroll working */
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
   display: none;
 }
 
 * {
   scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 body {
   background-color: black;
+  /* Prevent horizontal overflow on mobile */
+  overflow-x: hidden;
 }
