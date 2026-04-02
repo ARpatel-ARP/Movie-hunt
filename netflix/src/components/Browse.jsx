@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import Header from './header'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import MovieContainer from './MovieContainer'
 import MainContainer from './mainContainer'
@@ -16,7 +16,7 @@ const Browse = () => {
   const user = useSelector((store) => store.app.user)
   const toggle = useSelector(store => store.movie.toggle)
   const navigate = useNavigate()
-  const movieListRef = useRef(null) // ✅ ref for scroll target
+  const movieListRef = useRef(null)
 
   usenowPlayingMovies()
   usePopularMovies()
@@ -28,15 +28,15 @@ const Browse = () => {
   }, [user])
 
   return (
-    <div>
+    <div className="min-h-screen bg-black">
       <Header />
-      <div className='pt-5'>
+      <div>
         {toggle ? <SearchMovie /> : (
           <>
             <MovieDialog />
             <MainContainer />
-            <ScrollIndicator targetRef={movieListRef} /> {/* ✅ add here */}
-            <div ref={movieListRef}> {/* ✅ attach ref to MovieContainer */}
+            <ScrollIndicator targetRef={movieListRef} />
+            <div ref={movieListRef}>
               <MovieContainer />
             </div>
           </>
