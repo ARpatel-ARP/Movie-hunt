@@ -4,9 +4,6 @@ import VideoBackground from './VideoBackground';
 
 export default function MovieDialog() {
   const { id } = useSelector(store => store.movie);
-  return (
-    <div className="relative w-full h-screen">
-      <VideoBackground movieId={id} />
-    </div>
-  );
+  useMovieById(id); // just fetch trailer when id changes
+  return null;
 }
